@@ -1,0 +1,30 @@
+{"color":"turquoise 1","code":{"hex":"#00F5FF"},"id":153}
+{"color":"cyan 4 (darkcyan)","code":{"hex":"#008B8B"},"id":179}
+{"color":"lightcyan 3","code":{"hex":"#B4CDCD"},"id":165}
+{"color":"darkslategray 1","code":{"hex":"#97FFFF"},"id":172}
+{"color":"azure 4","code":{"hex":"#838B8B"},"id":162}
+{"color":"turquoise 4","code":{"hex":"#00868B"},"id":156}
+{"color":"mediumturquoise","code":{"hex":"#48D1CC"},"id":181}
+{"color":"cadetblue 2","code":{"hex":"#8EE5EE"},"id":150}
+{"color":"cadetblue","code":{"hex":"#5F9EA0"},"id":157}
+{"color":"cadetblue 1","code":{"hex":"#98F5FF"},"id":149}
+{"color":"lightcyan 4","code":{"hex":"#7A8B8B"},"id":166}
+{"color":"lightblue 2","code":{"hex":"#B2DFEE"},"id":145}
+{"color":"cyan 3","code":{"hex":"#00CDCD"},"id":178}
+{"color":"azure 1 (azure)","code":{"hex":"#F0FFFF"},"id":159}
+{"color":"turquoise","code":{"hex":"#40E0D0"},"id":184}
+{"color":"paleturquoise 4","code":{"hex":"#668B8B"},"id":170}
+{"color":"lightcyan 3","code":{"hex":"#B4CDCD"},"id":165}
+{"color":"turquoise","code":{"hex":"#40E0D0"},"id":184}
+{"color":"mediumturquoise","code":{"hex":"#48D1CC"},"id":181}
+{"color":"cadetblue","code":{"hex":"#5F9EA0"},"id":157}
+{"color":"darkslategray 3","code":{"hex":"#79CDCD"},"id":174}
+{"color":"coldgrey","code":{"hex":"#808A87"},"id":185}
+{"color":"darkturquoise","code":{"hex":"#00CED1"},"id":158}
+{"color":"lightblue","code":{"hex":"#ADD8E6"},"id":143}
+{"color":"cadetblue 4","code":{"hex":"#53868B"},"id":152}
+{"color":"lightcyan 4","code":{"hex":"#7A8B8B"},"id":166}
+{"color":"turquoise 2","code":{"hex":"#00E5EE"},"id":154}
+{"color":"darkslategray 3","code":{"hex":"#79CDCD"},"id":174}
+{"color":"lightblue 4","code":{"hex":"#68838B"},"id":147}
+{"color":"azure 4","code":{"hex":"#838B8B"},"id":162}
