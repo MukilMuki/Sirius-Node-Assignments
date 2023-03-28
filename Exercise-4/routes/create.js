@@ -2,10 +2,9 @@ let express = require('express');
 let router=express.Router();
 let port = 4000;
 
+let nicknameController=require('../controllers/nicknameController');
 
-app.use("/nickname",(req,res)=>{
-    res.send("Nickname route");
-});
+app.get("/nickname",nicknameController);
 
 app.use("/age",(req,res)=>{
     res.send("Age route");

@@ -3,9 +3,9 @@ let app= express();
 let port = 4000;
 
 let create=require('./routes/create')
-app.use("/create", create);
+app.get("/create", create);
 
-app.use("/read",(req,res)=>{
+app.get("/read",(req,res)=>{
     res.send("Read route");
 })
 
