@@ -2,7 +2,7 @@ let express = require('express');
 let app= express();
 let port = 4000;
 
-
+let create=require('./routes/')
 app.use("/create",(req,res)=>{
     res.send("Create route");
 });
