@@ -1,24 +1,28 @@
-let http = require('http');
-let url = require('url');
-let fileSystem = require('fs');
-let color_palette = require('./color_palette.json')
-http.createServer((req, res, err) => {
-    let i = 0
-    for (i = 0; i < 5; i++) {
-        var randomPalette = Math.floor(Math.random() * color_palette.length);
-        fileSystem.appendFile("./random-colors.txt", JSON.stringify(color_palette[randomPalette])+"\n", (err) => {
-            if (err)
-                console.log("Color didnt get appended");
-            else
-                console.log("Color got added");
-        });
-    }
-    fileSystem.readFile("./random-colors.txt", 'utf-8', (err, data) => {
-        if (err)
-            console.log("Coudlnt read file");
-        else
-            console.log(data);
-    })
-    res.write("works");
+let http = require("http");
+let fileSystem = require("fs");
+let colorPalette = require("./color-palette.json");
+
+function writeToFile() {
+  let colorsArray = JSON.parse(
+    fileSystem.readFileSync("./color-palette.json", "utf-8")
+  );
+  var randomColorsArray = [];
+  var unique = [];
+  while (unique.length < 5) {
+    var randomPalette = Math.floor(Math.random() * colorPalette.length);
+    randomColorsArray.push(colorsArray[randomPalette]);
+    unique = randomColorsArray.filter(
+      (value, index, array) => array.indexOf(value) === index
+    );
+  }
+  fileSystem.writeFileSync("./random-colors.json", JSON.stringify(unique));
+}
+
+http
+  .createServer((req, res, err) => {
+    writeToFile();
+    const data = fileSystem.readFileSync("./random-colors.json", "utf-8");
+    res.write(data);
     res.end();
-}).listen(4000);
+  })
+  .listen(4000);
