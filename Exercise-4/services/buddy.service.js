@@ -1,10 +1,13 @@
 let fs = require("fs");
 
+function readFromFile() {
+  var file = fs.readFileSync("./cdw_ace23_buddies.json", "utf-8");
+  return file;
+}
+
 function createBuddy(newBuddy) {
   try {
-    var existingBuddy = JSON.parse(
-      fs.readFileSync("./cdw_ace23_buddies.json", "utf-8")
-    );
+    var existingBuddy = JSON.parse(readFromFile());
     existingBuddy.push(newBuddy);
     fs.writeFileSync("./cdw_ace23_buddies.json", JSON.stringify(existingBuddy));
     return "Buddy added";
@@ -12,7 +15,7 @@ function createBuddy(newBuddy) {
 }
 
 function updateBuddy(updatedBuddy) {
-  var buddy = JSON.parse(fs.readFileSync("./cdw_ace23_buddies.json", "utf-8"));
+  var buddy = JSON.parse(readFromFile());
 
   var updateBuddyID = buddy.findIndex(
     (element) => element.employeeId == updatedBuddy.employeeId
@@ -30,22 +33,18 @@ function updateBuddy(updatedBuddy) {
 }
 
 function displayBuddy() {
-  const buddy = fs.readFileSync("./cdw_ace23_buddies.json", "utf-8");
+  const buddy = readFromFile();
   return buddy;
 }
 
 function displayBuddyByID(buddyID) {
-  const buddies = JSON.parse(
-    fs.readFileSync("./cdw_ace23_buddies.json", "utf-8")
-  );
+  const buddies = JSON.parse(readFromFile());
   const selectedBuddy = buddies.filter((id) => id.employeeId == buddyID);
   return selectedBuddy.length > 0 ? selectedBuddy[0] : "Buddy not found";
 }
 
 function deleteBuddy(buddyID) {
-  const buddies = JSON.parse(
-    fs.readFileSync("./cdw_ace23_buddies.json", "utf-8")
-  );
+  const buddies = JSON.parse(readFromFile());
   var findBuddy = buddies.findIndex((element) => element.buddyID == buddyID);
   buddies.splice(findBuddy, 1);
   fs.writeFileSync("./cdw_ace23_buddies.json", JSON.stringify(buddies));
