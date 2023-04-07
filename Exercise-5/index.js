@@ -1,10 +1,18 @@
-let express= require ('express');
-let app=express();
-let cors=require('cors');
+let express = require("express");
+let app = express();
+require("dotenv").config();
 
-app.use(cors(
-    {
-        origin: ['http://127.0.0.1:5500/sirius-locations/index.html'],
-    }
-));
-app.listen(4000);
+const port = process.env.PORT;
+const indexInformation =
+  "A friendly buddy program for everyone to add themselves as a buddy!";
+
+let buddyRoute = require("./routes/buddy.route.js");
+app.use("/user", buddyRoute);
+
+app.get("/", (req, res) => {
+  res.send(indexInformation);
+});
+
+app.listen(port, () => {
+  console.log("The server has started");
+});
