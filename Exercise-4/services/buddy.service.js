@@ -1,54 +1,88 @@
-let fs = require("fs");
-
-function readFromFile() {
-  var file = fs.readFileSync("./cdw_ace23_buddies.json", "utf-8");
-  return file;
-}
+const { readFromFile, writeJSONData } = require("../utils/helper");
 
 function createBuddy(newBuddy) {
   try {
+    const buddySuccess = "Buddy created";
+    const buddyFail = "Buddy with that id already exists";
     var existingBuddy = JSON.parse(readFromFile());
-    existingBuddy.push(newBuddy);
-    fs.writeFileSync("./cdw_ace23_buddies.json", JSON.stringify(existingBuddy));
-    return "Buddy added";
-  } catch (err) {}
+    const existingBuddyID = existingBuddy.findIndex(
+      (element) => element.employeeId == newBuddy.employeeId
+    );
+    if (existingBuddyID == -1) {
+      existingBuddy.push(newBuddy);
+      console.log(existingBuddy);
+      writeJSONData(existingBuddy);
+      return buddySuccess;
+    } else {
+      return buddyFail;
+    }
+  } catch (err) {
+    return buddyFail;
+  }
 }
 
-function updateBuddy(updatedBuddy) {
-  var buddy = JSON.parse(readFromFile());
+function updateBuddy(buddyID, buddyData) {
+  try {
+    const buddySuccess = "Buddy found and modified";
+    const buddyFail = "Buddy not found";
+    var buddy = JSON.parse(readFromFile());
 
-  var updateBuddyID = buddy.findIndex(
-    (element) => element.employeeId == updatedBuddy.employeeId
-  );
-  if (updateBuddyID !== -1) {
-    if (buddy[updateBuddyID].employeeNickname)
-      buddy[updateBuddyID].employeeNickname = updatedBuddy.employeeNickname;
-    if (buddy[updateBuddyID].employeeBirthday)
-      buddy[updateBuddyID].employeeBirthday = updatedBuddy.employeeBirthday;
-    if (buddy[updateBuddyID].employeeHobbies)
-      buddy[updateBuddyID].employeeHobbies = updatedBuddy.employeeHobbies;
-    fs.writeFileSync("./cdw_ace23_buddies.json", JSON.stringify(buddy));
-    return "Buddy updated";
-  } else return "Buddy not found";
+    var updateBuddyID = buddy.findIndex(
+      (element) => element.employeeId == buddyID
+    );
+    if (updateBuddyID !== -1) {
+      if (buddy[updateBuddyID].employeeNickname)
+        buddy[updateBuddyID].employeeNickname = buddyData.employeeNickname;
+      if (buddy[updateBuddyID].employeeBirthday)
+        buddy[updateBuddyID].employeeBirthday = buddyData.employeeBirthday;
+      if (buddy[updateBuddyID].employeeHobbies)
+        buddy[updateBuddyID].employeeHobbies = buddyData.employeeHobbies;
+      writeJSONData(buddy);
+      return buddySuccess;
+    } else return buddyFail;
+  } catch (err) {
+    return err;
+  }
 }
 
 function displayBuddy() {
-  const buddy = readFromFile();
-  return buddy;
+  try {
+    const buddy = readFromFile();
+    return buddy;
+  } catch (err) {
+    return err;
+  }
 }
 
 function displayBuddyByID(buddyID) {
-  const buddies = JSON.parse(readFromFile());
-  const selectedBuddy = buddies.filter((id) => id.employeeId == buddyID);
-  return selectedBuddy.length > 0 ? selectedBuddy[0] : "Buddy not found";
+  try {
+    const buddyFail = "Buddy not found";
+    const buddies = JSON.parse(readFromFile());
+    const selectedBuddy = buddies.filter((id) => id.employeeId == buddyID);
+    return selectedBuddy.length > 0 ? selectedBuddy[0] : buddyFail;
+  } catch (err) {
+    return err;
+  }
 }
 
-function deleteBuddy(buddyID) {
-  const buddies = JSON.parse(readFromFile());
-  var findBuddy = buddies.findIndex((element) => element.buddyID == buddyID);
-  buddies.splice(findBuddy, 1);
-  fs.writeFileSync("./cdw_ace23_buddies.json", JSON.stringify(buddies));
-  return "Buddy deleted";
+function deleteBuddy(employeeId) {
+  const deleteFail = "Couldnt delete";
+  const deleteSuccess = "Successfully Deleted Buddy";
+  try {
+    const buddies = JSON.parse(readFromFile());
+    const findBuddy = buddies.findIndex(
+      (element) => element.employeeId == employeeId
+    );
+    if (findBuddy == -1) {
+      return deleteFail;
+    } else if (findBuddy != -1) {
+      buddies.splice(findBuddy, 1);
+      writeJSONData(buddies);
+      return deleteSuccess;
+    }
+  } catch (err) {
+    return err;
+  }
 }
 
 module.exports = {

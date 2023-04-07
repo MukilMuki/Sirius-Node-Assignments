@@ -1,17 +1,22 @@
 let express = require("express");
 const router = express.Router();
-let port = 4000;
 
 let buddyController = require("../controllers/buddy.controller");
 
-router.post("/add", buddyController.newBuddyController);
+router.post("/addBuddy", buddyController.newBuddyController);
 
-router.get("/viewall", buddyController.displayBuddyController);
+router.get("/viewAllBuddies", buddyController.displayBuddyController);
 
-router.get("/viewbyid", buddyController.displayBuddyByIDController);
+router.get(
+  "/viewByBuddyId/:employeeId",
+  buddyController.displayBuddyByIDController
+);
 
-router.put("/update", buddyController.updateBuddyController);
+router.put("/updateBuddy/:employeeId", buddyController.updateBuddyController);
 
-router.delete("/delete", buddyController.deleteBuddyController);
+router.delete(
+  "/deleteBuddy/:employeeId",
+  buddyController.deleteBuddyController
+);
 
 module.exports = router;
