@@ -1,7 +1,6 @@
 const fs = require("fs");
-
-let cors = require("cors");
 let express = require("express");
+let cors = require("cors");
 let app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

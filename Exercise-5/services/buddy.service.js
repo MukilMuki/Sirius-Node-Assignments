@@ -1,14 +1,22 @@
 const { readFromFile, writeJSONData } = require("../utils/helper");
 const logger = require("../utils/logger");
-const buddySuccess = "Buddy found and modified";
-const buddyFail = "Buddy not found";
 
 function createBuddy(newBuddy) {
   try {
+    const buddySuccess = "Buddy created";
+    const buddyFail = "Buddy with that id already exists";
     var existingBuddy = JSON.parse(readFromFile());
-    existingBuddy.push(newBuddy);
-    writeJSONData(existingBuddy);
-    return buddySuccess;
+    const existingBuddyID = existingBuddy.findIndex(
+      (element) => element.employeeId == newBuddy.employeeId
+    );
+    if (existingBuddyID == -1) {
+      existingBuddy.push(newBuddy);
+      console.log(existingBuddy);
+      writeJSONData(existingBuddy);
+      return buddySuccess;
+    } else {
+      return buddyFail;
+    }
   } catch (err) {
     logger.error(
       `${err.status || 500} - ${err.statusMessage} - ${err.message}`
@@ -18,6 +26,8 @@ function createBuddy(newBuddy) {
 
 function updateBuddy(buddyID, buddyData) {
   try {
+    const buddySuccess = "Buddy found and modified";
+    const buddyFail = "Buddy not found";
     var buddy = JSON.parse(readFromFile());
 
     var updateBuddyID = buddy.findIndex(
@@ -53,6 +63,7 @@ function displayBuddy() {
 
 function displayBuddyByID(buddyID) {
   try {
+    const buddyFail = "Buddy not found";
     const buddies = JSON.parse(readFromFile());
     const selectedBuddy = buddies.filter((id) => id.employeeId == buddyID);
     return selectedBuddy.length > 0 ? selectedBuddy[0] : buddyFail;
@@ -64,15 +75,20 @@ function displayBuddyByID(buddyID) {
 }
 
 function deleteBuddy(employeeId) {
+  const deleteFail = "Couldnt delete";
+  const deleteSuccess = "Successfully Deleted Buddy";
   try {
     const buddies = JSON.parse(readFromFile());
     const findBuddy = buddies.findIndex(
       (element) => element.employeeId == employeeId
     );
-    if (findBuddy == -1) return buddyFail;
-    buddies.splice(findBuddy, 1);
-    writeJSONData(buddies);
-    return buddySuccess;
+    if (findBuddy == -1) {
+      return deleteFail;
+    } else if (findBuddy != -1) {
+      buddies.splice(findBuddy, 1);
+      writeJSONData(buddies);
+      return deleteSuccess;
+    }
   } catch (err) {
     logger.error(
       `${err.status || 500} - ${err.statusMessage} - ${err.message}`

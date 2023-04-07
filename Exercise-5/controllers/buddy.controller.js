@@ -1,15 +1,14 @@
 const {
-  displayBuddy,
   createBuddy,
-  displayBuddyByID,
   updateBuddy,
+  displayBuddy,
+  displayBuddyByID,
   deleteBuddy,
 } = require("../services/buddy.service");
 
 const newBuddyController = (req, res) => {
-  const data = req.body;
-  const addedBuddy = createBuddy(data);
-  res.send(addedBuddy);
+  const buddy = req.body;
+  res.send(createBuddy(buddy));
 };
 
 const updateBuddyController = (req, res) => {
@@ -24,12 +23,14 @@ const displayBuddyController = (req, res) => {
 
 const displayBuddyByIDController = (req, res) => {
   const buddyID = req.params.employeeId;
-  res.send(displayBuddyByID(buddyID));
+  const buddySuccess = displayBuddyByID(buddyID);
+  res.send(buddySuccess);
 };
 
 const deleteBuddyController = (req, res) => {
   const buddyID = req.params.employeeId;
-  res.send(deleteBuddy(buddyID));
+  const buddySuccess = deleteBuddy(buddyID);
+  res.send(buddySuccess);
 };
 
 module.exports = {

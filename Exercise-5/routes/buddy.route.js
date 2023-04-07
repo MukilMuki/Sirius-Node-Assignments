@@ -3,7 +3,7 @@ const router = express.Router();
 
 let buddyController = require("../controllers/buddy.controller");
 
-router.post("/addbuddy", buddyController.newBuddyController);
+router.post("/addBuddy", buddyController.newBuddyController);
 
 router.get("/viewAllBuddies", buddyController.displayBuddyController);
 
