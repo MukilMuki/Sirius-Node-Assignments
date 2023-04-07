@@ -1,1 +1,7 @@
-[{"color":"darkslategray","code":{"hex":"#2F4F4F"},"id":171},{"color":"turquoise","code":{"hex":"#40E0D0"},"id":184},{"color":"cadetblue 4","code":{"hex":"#53868B"},"id":152},{"color":"lightcyan 2","code":{"hex":"#D1EEEE"},"id":164},{"color":"lightcyan 1 (lightcyan)","code":{"hex":"#E0FFFF"},"id":163}]
+[
+  { "color": "cadetblue", "code": { "hex": "#5F9EA0" }, "id": 157 },
+  { "color": "coldgrey", "code": { "hex": "#808A87" }, "id": 185 },
+  { "color": "turquoise 4", "code": { "hex": "#00868B" }, "id": 156 },
+  { "color": "darkslategray 1", "code": { "hex": "#97FFFF" }, "id": 172 },
+  { "color": "cyan / aqua*", "code": { "hex": "#00FFFF" }, "id": 176 }
+]
