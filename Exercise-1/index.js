@@ -8,17 +8,16 @@ function writeToFile() {
     );
     if (colorsArray.length > 5) {
       var randomColorsArray = [];
-      var uniqueColorsArray = [];
-      while (uniqueColorsArray.length < 5) {
+      while (randomColorsArray.length < 5) {
         var randomPalette = Math.floor(Math.random() * colorPalette.length);
         randomColorsArray.push(colorsArray[randomPalette]);
-        uniqueColorsArray = randomColorsArray.filter(
+        randomColorsArray = randomColorsArray.filter(
           (value, index, array) => array.indexOf(value) === index
         );
       }
       fileSystem.writeFileSync(
         "./random-colors.json",
-        JSON.stringify(uniqueColorsArray)
+        JSON.stringify(randomColorsArray)
       );
     } else {
       console.log("The Palette should atleast have 5 colors in it!");
