@@ -1,0 +1,7 @@
+[
+  { "color": "darkslategray 1", "code": { "hex": "#97FFFF" }, "id": 172 },
+  { "color": "lightblue 2", "code": { "hex": "#B2DFEE" }, "id": 145 },
+  { "color": "cyan / aqua*", "code": { "hex": "#00FFFF" }, "id": 176 },
+  { "color": "manganeseblue", "code": { "hex": "#03A89E" }, "id": 183 },
+  { "color": "turquoise", "code": { "hex": "#40E0D0" }, "id": 184 }
+]
